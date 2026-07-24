@@ -58,13 +58,13 @@ Now, the Stack becomes empty, which means we have visited all the nodes, and our
 ```
 from collections import defaultdict
 
-def dfs(graph, node, visited):
+def dfs(graph, node, visited, path):
     visited.add(node)
-    print(node, end=" ")
+    path.append(node)
 
     for neighbor in graph[node]:
         if neighbor not in visited:
-            dfs(graph, neighbor, visited)
+            dfs(graph, neighbor, visited, path)
 
 graph = defaultdict(list)
 
@@ -76,10 +76,13 @@ for i in range(e):
     graph[v].append(u)
 
 visited = set()
+path = []
+
 start = list(graph.keys())[0]
 
-print("DFS Traversal:")
-dfs(graph, start, visited)
+dfs(graph, start, visited, path)
+
+print(path)
 ```
 
 <hr>
